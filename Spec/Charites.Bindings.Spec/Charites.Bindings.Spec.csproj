@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>Charites.Windows.Mvc.Bindings</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>averrunci</Authors>
+    <Company>averrunci</Company>
+    <Copyright>Copyright (C) 2018 Fievus</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageLicenseUrl>https://github.com/averrunci/Charites.Bindings/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/averrunci/Charites.Bindings</PackageProjectUrl>
+    <Description>The specifiation class library about properties for data binding.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Carna.ConsoleRunner" Version="1.5.0" />
+    <PackageReference Include="NSubstitute" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\Charites.Bindings\Charites.Bindings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
