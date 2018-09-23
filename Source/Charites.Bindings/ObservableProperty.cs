@@ -23,37 +23,7 @@ namespace Charites.Windows.Mvc.Bindings
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add
-            {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-
-                if (value.Target == null && !value.Method.IsStatic)
-                {
-                    RawPropertyChanged += value;
-                }
-                else
-                {
-                    weakPropertyChanged.AddHandler(value);
-                }
-            }
-            remove
-            {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-
-                if (value.Target == null && !value.Method.IsStatic)
-                {
-                    RawPropertyChanged -= value;
-                }
-                else
-                {
-                    weakPropertyChanged.RemoveHandler(value);
-                }
-            }
-        }
-        private readonly WeakPropertyChangedEvent weakPropertyChanged = new WeakPropertyChangedEvent();
-        private event PropertyChangedEventHandler RawPropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Occurs before a property value changes.
@@ -501,11 +471,7 @@ namespace Charites.Windows.Mvc.Bindings
         /// Raises the <see cref="PropertyChanged"/> event with the specified event data.
         /// </summary>
         /// <param name="e">The event data.</param>
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            RawPropertyChanged?.Invoke(this, e);
-            weakPropertyChanged.Raise(this, e);
-        }
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
 
         /// <summary>
         /// Raises the <see cref="PropertyValueChanging"/> event with the specified event data.
