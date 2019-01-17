@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2018 Fievus
+﻿// Copyright (C) 2018-2019 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -7,7 +7,7 @@ using System;
 namespace Charites.Windows.Mvc.Bindings
 {
     /// <summary>
-    /// Represents the method that handles the <see cref="ObservableProperty{T}.PropertyValueChanged"/> event
+    /// Represents the method that handles the <see cref="BindableProperty{T}.PropertyValueChanged"/> event
     /// raised when a value of the property is changed.
     /// </summary>
     /// <typeparam name="T">The type of the property value.</typeparam>
@@ -16,7 +16,7 @@ namespace Charites.Windows.Mvc.Bindings
     public delegate void PropertyValueChangedEventHandler<T>(object sender, PropertyValueChangedEventArgs<T> e);
 
     /// <summary>
-    /// Provides the data for the <see cref="ObservableProperty{T}.PropertyChanged"/> event.
+    /// Provides the data for the <see cref="BindableProperty{T}.PropertyChanged"/> event.
     /// </summary>
     /// <typeparam name="T">The type of the property value.</typeparam>
     public class PropertyValueChangedEventArgs<T> : EventArgs
