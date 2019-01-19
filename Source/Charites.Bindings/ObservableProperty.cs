@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace Charites.Windows.Mvc.Bindings
 {
@@ -240,6 +241,32 @@ namespace Charites.Windows.Mvc.Bindings
         /// <returns>The instance of the <see cref="ObservableProperty{T}"/> class.</returns>
         public new ObservableProperty<T> EnsureValidation()
             => base.EnsureValidation() as ObservableProperty<T>;
+
+        /// <summary>
+        /// Enables the delay of the property value change.
+        /// </summary>
+        /// <param name="delayTime">The time of delay.</param>
+        /// <returns>The instance of the <see cref="ObservableProperty{T}"/> class.</returns>
+        public new ObservableProperty<T> EnableDelayValueChange(TimeSpan delayTime)
+            => base.EnableDelayValueChange(delayTime) as ObservableProperty<T>;
+
+        /// <summary>
+        /// Enables the delay of the property value change
+        /// </summary>
+        /// <param name="delayTime">The time of delay.</param>
+        /// <param name="synchronizationContext">
+        /// The object used to marshal event-handler calls that are issued when to change the property value.
+        /// </param>
+        /// <returns>The instance of the <see cref="ObservableProperty{T}"/> class.</returns>
+        public new ObservableProperty<T> EnableDelayValueChange(TimeSpan delayTime, SynchronizationContext synchronizationContext)
+            => base.EnableDelayValueChange(delayTime, synchronizationContext) as ObservableProperty<T>;
+
+        /// <summary>
+        /// Disables the delay of the property value change.
+        /// </summary>
+        /// <returns>The instance of the <see cref="ObservableProperty{T}"/> class.</returns>
+        public new ObservableProperty<T> DisableDelayValueChange()
+            => base.DisableDelayValueChange() as ObservableProperty<T>;
     }
 
     /// <summary>

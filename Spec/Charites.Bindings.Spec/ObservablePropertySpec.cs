@@ -23,5 +23,8 @@ namespace Charites.Windows.Mvc.Bindings
 
         [Context]
         ObservablePropertySpec_Validation Validation { get; set; }
+
+        [Context]
+        ObservablePropertySpec_DelayValueChange DelayValueChange { get; set; }
     }
 }

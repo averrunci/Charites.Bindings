@@ -20,5 +20,8 @@ namespace Charites.Windows.Mvc.Bindings
 
         [Context]
         BoundPropertySpec_Validation Validation { get; }
+
+        [Context]
+        BoundPropertySpec_DelayValueChange DelayValueChange { get; }
     }
 }

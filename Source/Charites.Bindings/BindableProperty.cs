@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading;
 
 namespace Charites.Windows.Mvc.Bindings
 {
@@ -45,6 +46,8 @@ namespace Charites.Windows.Mvc.Bindings
         /// </summary>
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        private readonly PropertyValueChangeTimer<T> valueChangedTimer;
+
         private PropertyChangedEventArgs valueChangedEventArgs;
         private DataErrorsChangedEventArgs dataErrorsChangedEventArgs;
 
@@ -55,6 +58,7 @@ namespace Charites.Windows.Mvc.Bindings
         private string displayName;
 
         private bool cancelValueChangedIfInvalid;
+
 
         private T value;
 
@@ -110,6 +114,8 @@ namespace Charites.Windows.Mvc.Bindings
         protected BindableProperty(T initialValue)
         {
             value = initialValue;
+
+            valueChangedTimer = new PropertyValueChangeTimer<T>(SetValue);
         }
 
         /// <summary>
@@ -290,6 +296,40 @@ namespace Charites.Windows.Mvc.Bindings
         }
 
         /// <summary>
+        /// Enables the delay of the property value change.
+        /// </summary>
+        /// <param name="delayTime">The time of delay.</param>
+        /// <returns>The instance of the <see cref="BindableProperty{T}"/> class.</returns>
+        public BindableProperty<T> EnableDelayValueChange(TimeSpan delayTime)
+            => EnableDelayValueChange(delayTime, SynchronizationContext.Current);
+
+        /// <summary>
+        /// Enables the delay of the property value change
+        /// </summary>
+        /// <param name="delayTime">The time of delay.</param>
+        /// <param name="synchronizationContext">
+        /// The object used to marshal event-handler calls that are issued when to change the property value.
+        /// </param>
+        /// <returns>The instance of the <see cref="BindableProperty{T}"/> class.</returns>
+        public BindableProperty<T> EnableDelayValueChange(TimeSpan delayTime, SynchronizationContext synchronizationContext)
+        {
+            valueChangedTimer.Enable(delayTime, synchronizationContext);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Disables the delay of the property value change.
+        /// </summary>
+        /// <returns>The instance of the <see cref="BindableProperty{T}"/> class.</returns>
+        public BindableProperty<T> DisableDelayValueChange()
+        {
+            valueChangedTimer.Disable();
+
+            return this;
+        }
+
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
@@ -332,10 +372,15 @@ namespace Charites.Windows.Mvc.Bindings
             Validate(value);
             if (cancelValueChangedIfInvalid && HasErrors) return;
 
-            this.value = value;
+            valueChangedTimer.Restart(e.PropertyName, e.OldValue, e.NewValue);
+        }
+
+        private void SetValue(string propertyName, T oldValue, T newValue)
+        {
+            value = newValue;
 
             OnPropertyChanged(EnsureValueChangedEventArgs());
-            OnPropertyValueChanged(new PropertyValueChangedEventArgs<T>(e.PropertyName, e.OldValue, e.NewValue));
+            OnPropertyValueChanged(new PropertyValueChangedEventArgs<T>(propertyName, oldValue, newValue));
         }
 
         /// <summary>
