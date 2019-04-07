@@ -90,6 +90,26 @@ public class User
 }
 ```
 
+The ObservableProperty can delay a value change with the specified time span as follows:
+
+``` csharp
+public class Content
+{
+    public ObservableProperty<string> SearchCriteria { get; } = new ObservableProperty<string>();
+
+    public Content()
+    {
+        SearchCriteria.EnableDelayValueChange(TimeSpan.FromMilliseconds(500));
+    }
+}
+```
+
+The value change is executed with the specified SynchronizationContext. The defalut value is the SynchronizationContext.Current.
+
+### BoundProperty
+
+The BoundProperty provides the same function as the ObservableProperty but it can not change a value directly and can not bind in the two-way direction.
+
 ### EditableContentProperty
 
 The EditableContentProperty provides that a value can be edited with a dedicate content. In order to edit the value with the dedicate content, implementations to edit the value must be added when the EditStarted, EditCompleted, or EditCanceled events occurred.
