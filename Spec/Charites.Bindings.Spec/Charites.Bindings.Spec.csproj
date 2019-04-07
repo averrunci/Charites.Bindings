@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Carna.ConsoleRunner" Version="1.5.0" />
-    <PackageReference Include="NSubstitute" Version="3.1.0" />
+    <PackageReference Include="Carna.ConsoleRunner" Version="1.5.1" />
+    <PackageReference Include="NSubstitute" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
