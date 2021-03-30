@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Charites.Windows.Mvc.Bindings</RootNamespace>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Authors>averrunci</Authors>
     <Company>averrunci</Company>
-    <Copyright>Copyright (C) 2018-2019 Fievus</Copyright>
+    <Copyright>Copyright (C) 2018-2021 Fievus</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.2.1</AssemblyVersion>
+    <FileVersion>1.2.1</FileVersion>
     <PackageProjectUrl>https://github.com/averrunci/Charites.Bindings</PackageProjectUrl>
     <Description>The specifiation class library about properties for data binding.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

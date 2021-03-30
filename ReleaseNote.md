@@ -1,6 +1,12 @@
 # Release note
 
-## V1.2.0
+## v1.2.1
+
+### Changes
+
+- Change to be able to get its value when to set the BoundProperty at a multi binding.
+
+## v1.2.0
 
 ### Add
 
@@ -12,7 +18,7 @@
 
 - Change the Bind, Unbind, BindTwoWay, UnbindTwoWay, and EnsureValidation methods to return this.
 
-## V1.1.0
+## v1.1.0
 
 ### Changes
 
