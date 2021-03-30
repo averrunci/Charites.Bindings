@@ -1,0 +1,15 @@
+﻿{
+  "assemblies": [
+    "Charites.Bindings.Spec\\bin\\Debug\\netstandard2.0\\Charites.Bindings.Spec.dll"
+  ],
+  "reporters": [
+    {
+      "reporter": {
+        "type": "Carna.ConsoleRunner.Reporters.ConsoleFixtureReporter,carna-runner",
+        "options": {
+          "stepVisible": true
+        }
+      }
+    }
+  ]
+}
