@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Fievus
+﻿// Copyright (C) 2019-2021 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -354,7 +354,7 @@ namespace Charites.Windows.Mvc.Bindings
         /// Gets the property value.
         /// </summary>
         /// <returns>The value of the property.</returns>
-        protected virtual T GetValue() => value;
+        protected internal virtual T GetValue() => value;
 
         /// <summary>
         /// Sets the specified value.

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Fievus
+﻿// Copyright (C) 2019-2021 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -19,6 +19,10 @@ namespace Charites.Windows.Mvc.Bindings
         ObservableProperty<int> Property4 { get; set; }
         ObservableProperty<string> Property5 { get; set; }
         ObservableProperty<bool> Property6 { get; set; }
+
+        BoundProperty<int> BoundProperty1 { get; set; }
+        BoundProperty<int> BoundProperty2 { get; set; }
+        BoundProperty<int> BoundProperty3 { get; set; }
 
         [Background("the property whose value is string is ready")]
         public BoundProperty_Spec_Binding_MultiBinding()
@@ -162,6 +166,21 @@ namespace Charites.Windows.Mvc.Bindings
         {
             When("the property binds the property that is null with a converter", () => Property.Bind(context => context.GetValueAt<int>(0).ToString(), null));
             Then<ArgumentNullException>($"{typeof(ArgumentNullException)} should be thrown");
+        }
+
+        [Example("When the specified property is BoundProperty")]
+        void Ex07()
+        {
+            Given("a property whose type is BoundProperty", () => BoundProperty1 = BoundProperty<int>.Of(1));
+            Given("a property whose type is BoundProperty", () => BoundProperty2 = BoundProperty<int>.Of(2));
+            Given("a property whose type is BoundProperty", () => BoundProperty3 = BoundProperty<int>.Of(3));
+            When("the property binds the given three properties with a converter that converts to the sum of these values", () =>
+                Property.Bind(context => (context.GetValueAt<int>(0) + context.GetValueAt<int>(1) + context.GetValueAt<int>(2)).ToString(), BoundProperty1, BoundProperty2, BoundProperty3)
+            );
+            Then("the value of the property should be the changed value", () => Property.Value == "6");
+            Then("the value of the first property should not be changed", () => BoundProperty1.Value == 1);
+            Then("the value of the second property should not be changed", () => BoundProperty2.Value == 2);
+            Then("the value of the third property should not be changed", () => BoundProperty3.Value == 3);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2018 Fievus
+﻿// Copyright (C) 2018-2021 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -17,9 +17,9 @@ namespace Charites.Windows.Mvc.Bindings
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiBindingContext"/> class
-        /// with the specified binding sources that need to be <see cref="ObservableProperty{T}"/>.
+        /// with the specified binding sources that need to be <see cref="BindableProperty{T}"/>.
         /// </summary>
-        /// <param name="sources">The binding sources that need to be <see cref="ObservableProperty{T}"/></param>
+        /// <param name="sources">The binding sources that need to be <see cref="BindableProperty{T}"/></param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="sources"/> is <c>null</c>.
         /// </exception>
@@ -36,13 +36,13 @@ namespace Charites.Windows.Mvc.Bindings
         /// <returns>
         /// The value of the specified type at the specified index or
         /// the default value of the specified type if the binding source
-        /// at the specified index does not exist or is not <see cref="ObservableProperty{T}"/>.
+        /// at the specified index does not exist or is not <see cref="BindableProperty{T}"/>.
         /// </returns>
         public T GetValueAt<T>(int index)
         {
-            if (index < 0 || index >= bindingSources.Count) return default(T);
+            if (index < 0 || index >= bindingSources.Count) return default;
 
-            return bindingSources[index] is ObservableProperty<T> observableProperty ? observableProperty.Value : default(T);
+            return bindingSources[index] is BindableProperty<T> bindableProperty ? bindableProperty.GetValue() : default;
         }
     }
 }
