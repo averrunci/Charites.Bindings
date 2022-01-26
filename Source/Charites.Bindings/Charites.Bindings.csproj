@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Charites.Windows.Mvc.Bindings</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.2.1</Version>
     <Authors>averrunci</Authors>
-    <Copyright>Copyright (C) 2018-2021 Fievus</Copyright>
+    <Copyright>Copyright (C) 2022 Fievus</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <AssemblyVersion>1.2.1</AssemblyVersion>
     <FileVersion>1.2.1</FileVersion>
@@ -18,16 +18,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\Binary\Debug\</OutputPath>
-    <DocumentationFile>..\..\Binary\Debug\netstandard2.0\Charites.Bindings.xml</DocumentationFile>
+    <DocumentationFile>..\..\Binary\Debug\net6.0\Charites.Bindings.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\Binary\Release</OutputPath>
-    <DocumentationFile>..\..\Binary\Release\netstandard2.0\Charites.Bindings.xml</DocumentationFile>
+    <DocumentationFile>..\..\Binary\Release\net6.0\Charites.Bindings.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-  </ItemGroup>
 
 </Project>
