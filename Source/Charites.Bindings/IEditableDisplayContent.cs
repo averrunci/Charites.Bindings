@@ -1,38 +1,35 @@
-﻿// Copyright (C) 2018 Fievus
+﻿// Copyright (C) 2022 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using System;
+namespace Charites.Windows.Mvc.Bindings;
 
-namespace Charites.Windows.Mvc.Bindings
+/// <summary>
+/// Provides a display content of an editable content.
+/// </summary>
+public interface IEditableDisplayContent
 {
     /// <summary>
-    /// Provides a display content of an editable content.
+    /// Occurs when an edit is started.
     /// </summary>
-    public interface IEditableDisplayContent
-    {
-        /// <summary>
-        /// Occurs when an edit is started.
-        /// </summary>
-        event EventHandler EditStarted;
-
-        /// <summary>
-        /// Gets the <see cref="ObservableProperty{T}"/> of the value
-        /// that indicates whether the content is editable.
-        /// </summary>
-        ObservableProperty<bool> IsEditable { get; }
-
-        /// <summary>
-        /// Starts an edit of the content.
-        /// </summary>
-        void StartEdit();
-    }
+    event EventHandler? EditStarted;
 
     /// <summary>
-    /// Provides a display content of an editable content.
+    /// Gets the <see cref="ObservableProperty{T}"/> of the value
+    /// that indicates whether the content is editable.
     /// </summary>
-    /// <typeparam name="T">The type of the content.</typeparam>
-    public interface IEditableDisplayContent<T> : IEditableDisplayContent, IEditableContent<T>
-    {
-    }
+    ObservableProperty<bool> IsEditable { get; }
+
+    /// <summary>
+    /// Starts an edit of the content.
+    /// </summary>
+    void StartEdit();
+}
+
+/// <summary>
+/// Provides a display content of an editable content.
+/// </summary>
+/// <typeparam name="T">The type of the content.</typeparam>
+public interface IEditableDisplayContent<T> : IEditableDisplayContent, IEditableContent<T>
+{
 }

@@ -1,20 +1,16 @@
-﻿// Copyright (C) 2018 Fievus
+﻿// Copyright (C) 2022 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using System.Collections.Generic;
-using System.Linq;
+namespace Charites.Windows.Mvc.Bindings;
 
-namespace Charites.Windows.Mvc.Bindings
+internal sealed class EditableEditSelection<T> : EditableEditContent<T>, IEditableEditSelection
 {
-    internal sealed class EditableEditSelection<T> : EditableEditContent<T>, IEditableEditSelection
-    {
-        public ObservableProperty<bool> IsSelecting { get; } = new ObservableProperty<bool>();
-        public IEnumerable<T> SelectionItems { get; }
+    public ObservableProperty<bool> IsSelecting { get; } = new(false);
+    public IEnumerable<T> SelectionItems { get; }
 
-        public EditableEditSelection(IEnumerable<T> selectionItems)
-        {
-            SelectionItems = selectionItems ?? Enumerable.Empty<T>();
-        }
+    public EditableEditSelection(T selectedValue, IEnumerable<T> selectionItems) : base(selectedValue)
+    {
+        SelectionItems = selectionItems;
     }
 }

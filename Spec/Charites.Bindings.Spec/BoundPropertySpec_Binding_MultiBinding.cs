@@ -7,9 +7,9 @@ using Carna;
 namespace Charites.Windows.Mvc.Bindings;
 
 [Context("Multi binding")]
-class ObservablePropertySpec_Binding_MultiBinding : FixtureSteppable
+class BoundPropertySpec_Binding_MultiBinding : FixtureSteppable
 {
-    ObservableProperty<string> Property { get; }
+    BoundProperty<string> Property { get; }
 
     ObservableProperty<int> Property1 { get; set; } = default!;
     ObservableProperty<int> Property2 { get; set; } = default!;
@@ -19,10 +19,14 @@ class ObservablePropertySpec_Binding_MultiBinding : FixtureSteppable
     ObservableProperty<string> Property5 { get; set; } = default!;
     ObservableProperty<bool> Property6 { get; set; } = default!;
 
+    BoundProperty<int> BoundProperty1 { get; set; } = default!;
+    BoundProperty<int> BoundProperty2 { get; set; } = default!;
+    BoundProperty<int> BoundProperty3 { get; set; } = default!;
+
     [Background("the property whose value is string is ready")]
-    public ObservablePropertySpec_Binding_MultiBinding()
+    public BoundPropertySpec_Binding_MultiBinding()
     {
-        Property = ObservableProperty<string>.Of("Test1");
+        Property = BoundProperty<string>.Of("Test1");
     }
 
     [Example("When the property binds some properties and the value of the property is changed")]
@@ -56,12 +60,6 @@ class ObservablePropertySpec_Binding_MultiBinding : FixtureSteppable
         Then("the value of the first property should not be changed", () => Property1.Value == 7);
         Then("the value of the second property should not be changed", () => Property2.Value == 8);
         Then("the value of the third property should be the changed value", () => Property3.Value == 9);
-
-        When("the value of the property is changed", () => Property.Value = "Test");
-        Then("the value of the property should be the changed value", () => Property.Value == "Test");
-        Then("the value of the first property should not be changed", () => Property1.Value == 7);
-        Then("the value of the second property should not be changed", () => Property2.Value == 8);
-        Then("the value of the third property should not be changed", () => Property3.Value == 9);
     }
 
     [Example("When the property unbinds and the value of the property is changed")]
@@ -132,12 +130,6 @@ class ObservablePropertySpec_Binding_MultiBinding : FixtureSteppable
         Then("the value of the first property should not be changed", () => Property4.Value == 7);
         Then("the value of the second property should not be changed", () => Property5.Value == "## ");
         Then("the value of the third property should be the changed value", () => Property6.Value);
-
-        When("the value of the property is changed", () => Property.Value = "Test");
-        Then("the value of the property should be the changed value", () => Property.Value == "Test");
-        Then("the value of the first property should not be changed", () => Property4.Value == 7);
-        Then("the value of the second property should not be changed", () => Property5.Value == "## ");
-        Then("the value of the third property should not be changed", () => Property6.Value);
     }
 
     [Example("When the property that has already bound another property binds some properties")]
@@ -156,5 +148,20 @@ class ObservablePropertySpec_Binding_MultiBinding : FixtureSteppable
             )
         );
         Then<InvalidOperationException>($"{typeof(InvalidOperationException)} should be thrown");
+    }
+
+    [Example("When the specified property is BoundProperty")]
+    void Ex05()
+    {
+        Given("a property whose type is BoundProperty", () => BoundProperty1 = BoundProperty<int>.Of(1));
+        Given("a property whose type is BoundProperty", () => BoundProperty2 = BoundProperty<int>.Of(2));
+        Given("a property whose type is BoundProperty", () => BoundProperty3 = BoundProperty<int>.Of(3));
+        When("the property binds the given three properties with a converter that converts to the sum of these values", () =>
+            Property.Bind(context => (context.GetValueAt<int>(0) + context.GetValueAt<int>(1) + context.GetValueAt<int>(2)).ToString(), BoundProperty1, BoundProperty2, BoundProperty3)
+        );
+        Then("the value of the property should be the changed value", () => Property.Value == "6");
+        Then("the value of the first property should not be changed", () => BoundProperty1.Value == 1);
+        Then("the value of the second property should not be changed", () => BoundProperty2.Value == 2);
+        Then("the value of the third property should not be changed", () => BoundProperty3.Value == 3);
     }
 }
