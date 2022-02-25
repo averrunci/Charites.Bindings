@@ -1,5 +1,27 @@
 # Release note
 
+## v2.0.0
+
+### Add
+
+- Add a constructor whose parameter is the BindableProperty&lt;T&gt; to the BoundProperty.
+- Add the following static factory methods to the BoundProperty:
+  - By(BindableProperty&lt;T&gt; source)
+  - By&lt;TSource&gt;(BindableProperty&lt;TSource&gt; source, Func&lt;TSource, T&gt; converter)
+  - By(Func&lt;MultiBindingContext, T&gt; converter, params INotifyPropertyChanged[] sources)
+
+### Changes
+
+- Update the target framework version to .NET 6.0.
+- Enable Nullable reference types.
+- Delete a default constructor from the followings:
+  - BindableProperty
+  - BoundProperty
+  - EditableDisplayContent
+  - EditableEditContent
+  - ObservableProperty
+- Delete a constructor whose parameter is the IEnumerable&lt;T&gt; from the EditableSelectionProperty.
+
 ## v1.2.1
 
 ### Changes

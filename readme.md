@@ -6,7 +6,7 @@ Charites.Bindings is a class library that contains properties for data bindings.
 
 The ObservableProperty provides notifications when a value is changed and validations of a value.
 
-The ObservableProperty implements the INotifyPropertyChanged interface and raises the PropertyChanged event when the Value property is changed. This property can be used for data bindings. For example in UWP, a model code is as follows:
+The ObservableProperty implements the INotifyPropertyChanged interface and raises the PropertyChanged event when the Value property is changed. This property can be used for data bindings. For example in WinUI, a model code is as follows:
 
 ``` csharp
 public class User
@@ -28,8 +28,8 @@ The ObservableProperty can also bind another ObservableProperty as follows:
 ``` csharp
 public class Content
 {
-    public ObservableProperty<bool> IsExecuting { get; } = new ObservableProperty<bool>();
-    public ObservableProperty<bool> CanExecute { get; } = new ObservableProperty<bool>();
+    public ObservableProperty<bool> IsExecuting { get; } = new ObservableProperty<bool>(false);
+    public ObservableProperty<bool> CanExecute { get; } = new ObservableProperty<bool>(false);
 
     public Content()
     {
@@ -43,10 +43,10 @@ Multiple ObservableProperty can be bound as follows:
 ``` csharp
 public class Content
 {
-    public ObservableProperty<int> Red { get; } = new ObservableProperty<int>();
-    public ObservableProperty<int> Green { get; } = new ObservableProperty<int>();
-    public ObservableProperty<int> Blue { get; } = new ObservableProperty<int>();
-    public ObservableProperty<Color> Color { get; } = new ObservableProperty<Color>();
+    public ObservableProperty<int> Red { get; } = new ObservableProperty<int>(0);
+    public ObservableProperty<int> Green { get; } = new ObservableProperty<int>(0);
+    public ObservableProperty<int> Blue { get; } = new ObservableProperty<int>(0);
+    public ObservableProperty<Color> Color { get; } = new ObservableProperty<Color>(Colors.Black);
 
     public Content()
     {
@@ -63,8 +63,8 @@ The ObservableProperty can bind another ObservableProperty in the two-way direct
 ``` csharp
 public class Content
 {
-    public ObservableProperty<int> Age { get; } = new ObservableProperty<int>();
-    public ObservableProperty<string> InputAge { get; } = new ObservableProperty<string>();
+    public ObservableProperty<int> Age { get; } = new ObservableProperty<int>(0);
+    public ObservableProperty<string> InputAge { get; } = new ObservableProperty<string>(string.Empty);
 
     public Content()
     {
@@ -81,7 +81,7 @@ public class User
     [Display(Name = "First Name")]
     [Required(ErrorMessage = "Please enter {0}.")]
     [StringLength(25, ErrorMessage = "Please enter {0} within {1} characters.")]
-    public ObservableProperty<string> FirstName { get; } = new ObservableProperty<string>();
+    public ObservableProperty<string> FirstName { get; } = new ObservableProperty<string>(string.Empty);
 
     public User()
     {
@@ -95,7 +95,7 @@ The ObservableProperty can delay a value change with the specified time span as 
 ``` csharp
 public class Content
 {
-    public ObservableProperty<string> SearchCriteria { get; } = new ObservableProperty<string>();
+    public ObservableProperty<string> SearchCriteria { get; } = new ObservableProperty<string>(string.Empty);
 
     public Content()
     {
@@ -109,6 +109,19 @@ The value change is executed with the specified SynchronizationContext. The defa
 ### BoundProperty
 
 The BoundProperty provides the same function as the ObservableProperty but it can not change a value directly and can not bind in the two-way direction.
+
+``` csharp
+public class Content
+{
+    public ObservableProperty<bool> IsExecuting { get; } = new ObservableProperty<bool>(false);
+    public BoundProperty<bool> CanExecute { get; }
+
+    public Content()
+    {
+        CanExecute = BoundProperty.By<bool>(IsExecuting, value => !value);
+    }
+}
+```
 
 ### EditableContentProperty
 
