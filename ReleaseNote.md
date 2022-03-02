@@ -1,5 +1,14 @@
 # Release note
 
+## v2.1.0
+
+### Changes
+
+- Change the specification of the GetValueAt method of the MultiBindingContext class as follows:
+  - Change the return value to T from T?.
+  - Change to throw an exception when the specified index is outside the range of valid indexes for the binding sources.
+  - Change to throw an exception when the specified type is not a valid type of the BindableProperty&lt;T&gt; at the specified index.
+
 ## v2.0.0
 
 ### Add
