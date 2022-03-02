@@ -29,14 +29,20 @@ public sealed class MultiBindingContext
     /// <typeparam name="T">The type of the value.</typeparam>
     /// <param name="index">The index of the binding source.</param>
     /// <returns>
-    /// The value of the specified type at the specified index or
-    /// the default value of the specified type if the binding source
-    /// at the specified index does not exist or is not <see cref="BindableProperty{T}"/>.
+    /// The value of the specified type at the specified index.
     /// </returns>
-    public T? GetValueAt<T>(int index)
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="index"/> is less than 0 or
+    /// <paramref name="index"/> is equal to or greater than a count of the binding sources.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// <typeparamref name="T"/> is not a valid type of the <see cref="BindableProperty{T}"/> at <paramref name="index"/>.
+    /// </exception>
+    public T GetValueAt<T>(int index)
     {
-        if (index < 0 || index >= bindingSources.Count) return default;
+        if (index < 0 || index >= bindingSources.Count) throw new ArgumentOutOfRangeException($"The index({index}) is outside the range of valid indexes for the binding sources.");
+        if (bindingSources[index] is not BindableProperty<T> bindableProperty) throw new ArgumentException($"The type({typeof(T)}) is not a valid type of the BindableProperty at the index({index}).");
 
-        return bindingSources[index] is BindableProperty<T> bindableProperty ? bindableProperty.GetValue() : default;
+        return bindableProperty.GetValue();
     }
 }

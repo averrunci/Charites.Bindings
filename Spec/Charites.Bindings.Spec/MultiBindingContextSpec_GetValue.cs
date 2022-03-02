@@ -29,14 +29,30 @@ class MultiBindingContextSpec_GetValue : FixtureSteppable
     void Ex03() => Expect("the value at the specified index should be got", () => Context.GetValueAt<bool>(3));
 
     [Example("When the specified index is the lower range")]
-    void Ex04() =>  Expect("the default value should be got", () => Context.GetValueAt<string>(-1) == default);
+    void Ex04()
+    {
+        When("the lower range index is specified", () => Context.GetValueAt<string>(-1));
+        Then<ArgumentOutOfRangeException>($"{typeof(ArgumentOutOfRangeException)} should be thrown");
+    }
 
     [Example("When the specified index is the upper range")]
-    void Ex05() => Expect("the default value should be got", () => Context.GetValueAt<int>(4) == default);
+    void Ex05()
+    {
+        When("the upper range index is specified", () => Context.GetValueAt<int>(4));
+        Then<ArgumentOutOfRangeException>($"{typeof(ArgumentOutOfRangeException)} should be thrown");
+    }
 
-    [Example("When the type of the specified index is not ObservableProperty")]
-    void Ex06() => Expect("the default value should be got", () => Context.GetValueAt<bool>(2) == default);
+    [Example("When the type of the specified index is not BindableProperty")]
+    void Ex06()
+    {
+        When("the index at which the type is not BindableProperty is specified", () => Context.GetValueAt<bool>(2));
+        Then<ArgumentException>($"{typeof(ArgumentException)} should be thrown");
+    }
 
     [Example("When the type of the value of the specified index is not different")]
-    void Ex07() => Expect("the default value should be got", () => Context.GetValueAt<string>(1) == default);
+    void Ex07()
+    {
+        When("the index at which the type of the value is not different is specified", () => Context.GetValueAt<string>(1));
+        Then<ArgumentException>($"{typeof(ArgumentException)} should be thrown");
+    }
 }
