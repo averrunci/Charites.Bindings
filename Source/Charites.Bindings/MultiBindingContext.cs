@@ -45,4 +45,11 @@ public sealed class MultiBindingContext
 
         return bindableProperty.GetValue();
     }
+
+    /// <summary>
+    /// Gets all values of the binding source.
+    /// </summary>
+    /// <typeparam name="T">The type of the value.</typeparam>
+    /// <returns>All values of the binding source.</returns>
+    public IEnumerable<T> GetValues<T>() => bindingSources.OfType<BindableProperty<T>>().Select(bindableProperty => bindableProperty.GetValue());
 }

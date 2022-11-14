@@ -8,7 +8,8 @@ namespace Charites.Windows.Mvc.Bindings;
 
 [Specification(
     "MultiBindingContext Spec",
-    typeof(MultiBindingContextSpec_GetValue)
+    typeof(MultiBindingContextSpec_GetValue),
+    typeof(MultiBindingContextSpec_GetValues)
 )]
 class MultiBindingContextSpec
 {
