@@ -6,21 +6,14 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Specification("BoundProperty Spec")]
+[Specification(
+    "BoundProperty Spec",
+    typeof(BoundPropertySpec_InstanceCreation),
+    typeof(BoundPropertySpec_Binding),
+    typeof(BoundPropertySpec_ValueChangeHandling),
+    typeof(BoundPropertySpec_Validation),
+    typeof(BoundPropertySpec_DelayValueChange)
+)]
 public class BoundPropertySpec
 {
-    [Context]
-    BoundPropertySpec_InstanceCreation InstanceCreation => default!;
-
-    [Context]
-    BoundPropertySpec_Binding Binding => default!;
-
-    [Context]
-    BoundPropertySpec_ValueChangeHandling ValueChangeHandling => default!;
-
-    [Context]
-    BoundPropertySpec_Validation Validation => default!;
-
-    [Context]
-    BoundPropertySpec_DelayValueChange DelayValueChange => default!;
 }

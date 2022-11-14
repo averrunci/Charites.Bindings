@@ -6,12 +6,11 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Context("Value change handling")]
+[Context(
+    "Value change handling",
+    typeof(ObservablePropertySpec_ValueChangeHandling_ValueChanging),
+    typeof(ObservablePropertySpec_ValueChangeHandling_ValueChanged)
+)]
 class ObservablePropertySpec_ValueChangeHandling
 {
-    [Context]
-    ObservablePropertySpec_ValueChangeHandling_ValueChanging ValueChanging => default!;
-
-    [Context]
-    ObservablePropertySpec_ValueChangeHandling_ValueChanged ValueChanged => default!;
 }

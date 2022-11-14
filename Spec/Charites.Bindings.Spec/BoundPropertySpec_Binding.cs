@@ -6,15 +6,13 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Context("Binding")]
+[Context(
+    "Binding",
+    typeof(BoundPropertySpec_Binding_OneWay),
+    typeof(BoundPropertySpec_Binding_OneWayWithConverter),
+    typeof(BoundPropertySpec_Binding_MultiBinding)
+)]
+
 class BoundPropertySpec_Binding
 {
-    [Context]
-    BoundPropertySpec_Binding_OneWay OneWay => default!;
-
-    [Context]
-    BoundPropertySpec_Binding_OneWayWithConverter OneWayWithConverter => default!;
-
-    [Context]
-    BoundPropertySpec_Binding_MultiBinding MultiBinding => default!;
 }

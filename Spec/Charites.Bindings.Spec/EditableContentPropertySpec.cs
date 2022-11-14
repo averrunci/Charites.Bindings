@@ -6,18 +6,13 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Specification("EditableContentProperty Sped")]
+[Specification(
+    "EditableContentProperty Spec",
+    typeof(EditableContentPropertySpec_InstanceCreation),
+    typeof(EditableContentPropertySpec_EditStart),
+    typeof(EditableContentPropertySpec_EditCompletion),
+    typeof(EditableContentPropertySpec_EditCancellation)
+)]
 class EditableContentPropertySpec
 {
-    [Context]
-    EditableContentPropertySpec_InstanceCreation InstanceCreation => default!;
-
-    [Context]
-    EditableContentPropertySpec_EditStart EditStart => default!;
-
-    [Context]
-    EditableContentPropertySpec_EditCompletion EditCompletion => default!;
-
-    [Context]
-    EditableContentPropertySpec_EditCancellation EditCancellation => default!;
 }

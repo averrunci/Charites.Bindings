@@ -6,21 +6,14 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Context("Binding")]
+[Context(
+    "Binding",
+    typeof(ObservablePropertySpec_Binding_OneWay),
+    typeof(ObservablePropertySpec_Binding_OneWayWithConverter),
+    typeof(ObservablePropertySpec_Binding_MultiBinding),
+    typeof(ObservablePropertySpec_Binding_TwoWay),
+    typeof(ObservablePropertySpec_Binding_TwoWayWithConverter)
+)]
 class ObservablePropertySpec_Binding
 {
-    [Context]
-    ObservablePropertySpec_Binding_OneWay OneWay => default!;
-
-    [Context]
-    ObservablePropertySpec_Binding_OneWayWithConverter OneWayWithConverter => default!;
-
-    [Context]
-    ObservablePropertySpec_Binding_MultiBinding MultiBinding => default!;
-
-    [Context]
-    ObservablePropertySpec_Binding_TwoWay TwoWay => default!;
-
-    [Context]
-    ObservablePropertySpec_Binding_TwoWayWithConverter TwoWayWithConverter => default!;
 }

@@ -6,9 +6,10 @@ using Carna;
 
 namespace Charites.Windows.Mvc.Bindings;
 
-[Specification("MultiBindingContext Spec")]
+[Specification(
+    "MultiBindingContext Spec",
+    typeof(MultiBindingContextSpec_GetValue)
+)]
 class MultiBindingContextSpec
 {
-    [Context]
-    MultiBindingContextSpec_GetValue GetValue => default!;
 }
