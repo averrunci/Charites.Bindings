@@ -1,5 +1,12 @@
 # Release note
 
+## v2.2.0
+
+### Add
+
+- Add the GetValues&lt;T&gt;() method to the MultiBindingContext class.
+- Add the ProgressScope class.
+
 ## v2.1.0
 
 ### Changes

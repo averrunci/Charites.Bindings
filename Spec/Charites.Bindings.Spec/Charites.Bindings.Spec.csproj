@@ -5,13 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Charites.Windows.Mvc.Bindings</RootNamespace>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <Authors>averrunci</Authors>
     <Company>averrunci</Company>
     <Copyright>Copyright (C) 2022 Fievus</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0</FileVersion>
     <PackageProjectUrl>https://github.com/averrunci/Charites.Bindings</PackageProjectUrl>
     <Description>The specifiation class library about properties for data binding.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

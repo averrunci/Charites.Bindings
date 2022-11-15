@@ -6,12 +6,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Charites.Windows.Mvc.Bindings</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <Authors>averrunci</Authors>
     <Copyright>Copyright (C) 2022 Fievus</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0</FileVersion>
     <PackageProjectUrl>https://github.com/averrunci/Charites.Bindings</PackageProjectUrl>
     <PackageTags>charites binding</PackageTags>
     <Description>The class library that contains properties for data binding.</Description>
