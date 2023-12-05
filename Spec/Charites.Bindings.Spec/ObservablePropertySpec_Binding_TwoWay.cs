@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -7,17 +7,11 @@ using Carna;
 namespace Charites.Windows.Mvc.Bindings;
 
 [Context("Two way")]
-class ObservablePropertySpec_Binding_TwoWay : FixtureSteppable
+[method: Background("two properties (property1 and property2) are ready")]
+class ObservablePropertySpec_Binding_TwoWay() : FixtureSteppable
 {
-    ObservableProperty<string> Property1 { get; }
-    ObservableProperty<string> Property2 { get; }
-
-    [Background("two properties (property1 and property2) are ready")]
-    public ObservablePropertySpec_Binding_TwoWay()
-    {
-        Property1 = ObservableProperty<string>.Of("Test1");
-        Property2 = ObservableProperty<string>.Of("Test2");
-    }
+    ObservableProperty<string> Property1 { get; } = ObservableProperty<string>.Of("Test1");
+    ObservableProperty<string> Property2 { get; } = ObservableProperty<string>.Of("Test2");
 
     [Example("When the property binds another property as two way binding and the value of the property is changed")]
     void Ex01()

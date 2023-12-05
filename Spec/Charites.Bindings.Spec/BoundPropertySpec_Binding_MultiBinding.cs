@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -7,9 +7,10 @@ using Carna;
 namespace Charites.Windows.Mvc.Bindings;
 
 [Context("Multi binding")]
-class BoundPropertySpec_Binding_MultiBinding : FixtureSteppable
+[method: Background("the property whose value is string is ready")]
+class BoundPropertySpec_Binding_MultiBinding() : FixtureSteppable
 {
-    BoundProperty<string> Property { get; }
+    BoundProperty<string> Property { get; } = BoundProperty<string>.Of("Test1");
 
     ObservableProperty<int> Property1 { get; set; } = default!;
     ObservableProperty<int> Property2 { get; set; } = default!;
@@ -22,12 +23,6 @@ class BoundPropertySpec_Binding_MultiBinding : FixtureSteppable
     BoundProperty<int> BoundProperty1 { get; set; } = default!;
     BoundProperty<int> BoundProperty2 { get; set; } = default!;
     BoundProperty<int> BoundProperty3 { get; set; } = default!;
-
-    [Background("the property whose value is string is ready")]
-    public BoundPropertySpec_Binding_MultiBinding()
-    {
-        Property = BoundProperty<string>.Of("Test1");
-    }
 
     [Example("When the property binds some properties and the value of the property is changed")]
     void Ex01()

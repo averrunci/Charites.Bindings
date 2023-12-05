@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -7,17 +7,11 @@ using Carna;
 namespace Charites.Windows.Mvc.Bindings;
 
 [Context("One way with a converter")]
-class BoundPropertySpec_Binding_OneWayWithConverter : FixtureSteppable
+[method: Background("two properties (property1 that is the BoundProperty and property2) are ready; one has the string value and the other has the int value")]
+class BoundPropertySpec_Binding_OneWayWithConverter() : FixtureSteppable
 {
-    BoundProperty<string> Property1 { get; }
-    ObservableProperty<int> Property2 { get; }
-
-    [Background("two properties (property1 that is the BoundProperty and property2) are ready; one has the string value and the other has the int value")]
-    public BoundPropertySpec_Binding_OneWayWithConverter()
-    {
-        Property1 = BoundProperty<string>.Of("Test1");
-        Property2 = ObservableProperty<int>.Of(3);
-    }
+    BoundProperty<string> Property1 { get; } = BoundProperty<string>.Of("Test1");
+    ObservableProperty<int> Property2 { get; } = ObservableProperty<int>.Of(3);
 
     [Example("When the property binds another property with a converter and the value of the property is changed")]
     void Ex01()

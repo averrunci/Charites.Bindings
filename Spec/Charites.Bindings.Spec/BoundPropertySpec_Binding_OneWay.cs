@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -7,17 +7,11 @@ using Carna;
 namespace Charites.Windows.Mvc.Bindings;
 
 [Context("One way")]
-public class BoundPropertySpec_Binding_OneWay : FixtureSteppable
+[method: Background("two properties (property1 that is the BoundProperty and property2) are ready")]
+public class BoundPropertySpec_Binding_OneWay() : FixtureSteppable
 {
-    BoundProperty<string> Property1 { get; }
-    ObservableProperty<string> Property2 { get; }
-
-    [Background("two properties (property1 that is the BoundProperty and property2) are ready")]
-    public BoundPropertySpec_Binding_OneWay()
-    {
-        Property1 = BoundProperty<string>.Of("Test1");
-        Property2 = ObservableProperty<string>.Of("Test2");
-    }
+    BoundProperty<string> Property1 { get; } = BoundProperty<string>.Of("Test1");
+    ObservableProperty<string> Property2 { get; } = ObservableProperty<string>.Of("Test2");
 
     [Example("When the property binds another property and the value of the property is changed")]
     void Ex01()
