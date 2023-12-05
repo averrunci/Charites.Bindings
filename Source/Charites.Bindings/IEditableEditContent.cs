@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -34,6 +34,4 @@ public interface IEditableEditContent
 /// Provides an edit content of an editable content.
 /// </summary>
 /// <typeparam name="T">The type of the content.</typeparam>
-public interface IEditableEditContent<T> : IEditableEditContent, IEditableContent<T>
-{
-}
+public interface IEditableEditContent<T> : IEditableEditContent, IEditableContent<T>;
