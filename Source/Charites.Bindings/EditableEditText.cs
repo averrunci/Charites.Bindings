@@ -6,7 +6,7 @@ namespace Charites.Windows.Mvc.Bindings;
 
 internal sealed class EditableEditText(Func<string, bool>? validator, bool multiLine) : EditableEditContent<string>(string.Empty), IEditableEditText
 {
-    public ObservableProperty<bool> IsMultiLine { get; } = multiLine.ToObservableProperty<bool>();
+    public ObservableProperty<bool> IsMultiLine { get; } = multiLine.ToObservableProperty();
 
     private Func<string, bool>? Validator { get; } = validator;
 
