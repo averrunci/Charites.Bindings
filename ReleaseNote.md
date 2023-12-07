@@ -1,5 +1,11 @@
 # Release note
 
+## v3.0.0
+
+### Changes
+
+- Update the target framework version to .NET 8.0.
+
 ## v2.2.0
 
 ### Add
